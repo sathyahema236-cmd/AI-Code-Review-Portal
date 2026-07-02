@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Code Review Portal
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center">
+
+        <h1 class="display-4 fw-bold text-primary">
+            🤖 AI Code Review Portal
+        </h1>
+
+        <p class="lead mt-3">
+            Upload your Python code and receive an AI-powered review in seconds.
+        </p>
+
+        <div class="mt-4">
+
+            <a href="/login" class="btn btn-primary btn-lg me-3">
+                Login
+            </a>
+
+            <a href="/register" class="btn btn-success btn-lg">
+                Register
+            </a>
+
+        </div>
+
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="card shadow p-4 text-center">
+
+                <h2>🤖</h2>
+
+                <h4>AI Review</h4>
+
+                <p>
+                    Gemini AI analyzes your Python code and provides quality feedback.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow p-4 text-center">
+
+                <h2>📄</h2>
+
+                <h4>PDF Reports</h4>
+
+                <p>
+                    Download professional AI review reports in PDF format.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow p-4 text-center">
+
+                <h2>📊</h2>
+
+                <h4>Review History</h4>
+
+                <p>
+                    Manage, search, and revisit all previous AI code reviews.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

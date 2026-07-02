@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg p-5">
+
+        <h2 class="text-center text-primary">
+            🤖 AI Code Review Portal
+        </h2>
+
+        <hr>
+
+        <h4>
+            Welcome, {{ user_name }} 👋
+        </h4>
+
+        <p class="text-muted">
+            Upload your Python (.py) file for AI code review.
+        </p>
+
+        <!-- Upload Form -->
+
+        <form id="uploadForm"
+              action="/upload"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Select Python File
+                </label>
+
+                <input
+                    type="file"
+                    class="form-control"
+                    name="code_file"
+                    accept=".py"
+                    required>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-success">
+
+                📤 Upload File
+
+            </button>
+
+        </form>
+
+        <!-- Loading Spinner -->
+
+        <div id="loading"
+             class="text-center mt-4"
+             style="display:none;">
+
+            <div class="spinner-border text-primary"
+                 role="status">
+
+                <span class="visually-hidden">
+                    Loading...
+                </span>
+
+            </div>
+
+            <h5 class="mt-3 text-primary">
+                🤖 AI is reviewing your code...
+            </h5>
+
+            <p class="text-muted">
+                Please wait a few seconds.
+            </p>
+
+        </div>
+
+        <hr>
+
+        <!-- Statistics -->
+
+        <div class="row text-center">
+
+            <div class="col-md-6">
+
+                <div class="card bg-primary text-white shadow p-4">
+
+                    <h5>Total Reviews</h5>
+
+                    <h2>{{ total_reviews }}</h2>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card bg-success text-white shadow p-4">
+
+                    <h5>Files Uploaded</h5>
+
+                    <h2>{{ total_files }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="mt-5">
+
+        <!-- Action Buttons -->
+
+        <div class="mb-4">
+
+            <a href="/reviews"
+               class="btn btn-info me-2">
+
+                📜 Review History
+
+            </a>
+
+            <a href="/profile"
+               class="btn btn-secondary me-2">
+
+                👤 My Profile
+
+            </a>
+
+            <a href="/logout"
+               class="btn btn-danger">
+
+                🚪 Logout
+
+            </a>
+
+        </div>
+
+        <!-- Uploaded Files -->
+
+        <h3 class="mb-3">
+            📂 Uploaded Files
+        </h3>
+
+        <table class="table table-bordered table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>File Name</th>
+                    <th>Uploaded Time</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for file in files %}
+
+                <tr>
+
+                    <td>{{ file.id }}</td>
+
+                    <td>{{ file.file_name }}</td>
+
+                    <td>{{ file.uploaded_at }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- Loading Script -->
+
+<script>
+
+document.getElementById("uploadForm").addEventListener("submit", function(){
+
+    document.getElementById("loading").style.display = "block";
+
+});
+
+</script>
+
+{% endblock %}

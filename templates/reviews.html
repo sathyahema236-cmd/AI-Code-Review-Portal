@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}
+Review History
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg p-4">
+
+        <h2 class="text-center text-primary">
+            📜 Review History
+        </h2>
+
+        <hr>
+        <form method="GET" action="/reviews" class="mb-3">
+
+    <div class="input-group">
+
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search by file name..."
+            value="{{ search }}">
+
+        <button
+            class="btn btn-primary"
+            type="submit">
+
+            🔍 Search
+
+        </button>
+
+    </div>
+
+</form>
+
+        <table class="table table-bordered table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>File Name</th>
+
+                    <th>Date</th>
+
+                    <th>Review</th>
+                    <th>PDF</th>
+                    <th>Delete</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for review in reviews %}
+
+                <tr>
+
+                    <td>{{ review.id }}</td>
+
+                    <td>{{ review.file_name }}</td>
+
+                    <td>{{ review.created_at }}</td>
+
+                    <td>
+
+    <a href="/review/{{ review.id }}"
+       class="btn btn-success btn-sm">
+
+        View
+
+    </a>
+
+</td>
+<td>
+    <a href="/download_review/{{ review.id }}"
+       class="btn btn-warning btn-sm">
+        PDF
+    </a>
+</td>
+
+
+<td>
+
+    <a href="/delete_review/{{ review.id }}"
+       class="btn btn-danger btn-sm"
+       onclick="return confirm('Delete this review?')">
+
+        Delete
+
+    </a>
+
+</td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <br>
+
+        <a href="/dashboard"
+           class="btn btn-primary">
+
+            Back to Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Review
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg p-4">
+
+        <h2 class="text-primary">
+            🤖 AI Review Result
+        </h2>
+
+        <hr>
+
+        <h4>
+            File:
+            {{ filename }}
+        </h4>
+
+        <br>
+
+        <pre
+        style="white-space: pre-wrap;
+               font-size:16px;
+               background:#f8f9fa;
+               padding:20px;
+               border-radius:10px;">
+
+{{ review }}
+
+        </pre>
+
+        <br>
+
+        <a href="/reviews"
+           class="btn btn-primary">
+
+            ← Back to Review History
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
